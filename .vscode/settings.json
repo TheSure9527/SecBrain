@@ -1,0 +1,13 @@
+{
+  // 每 3 分钟自动 fetch，及时看到远端变化
+  "git.autofetch": true,
+  "git.autofetchPeriod": 180,
+  // 提交时自动暂存所有改动（不需要先点"+"）
+  "git.enableSmartCommit": true,
+  "git.smartCommitChanges": "all",
+  // 提交后自动 push（这就是"改完自动上 GitHub"最省心的方式）
+  "git.postCommitCommand": "sync",
+  "git.confirmSync": false,
+  // 冲突/拉取前先 stash，避免误提交半成品
+  "git.autostash": true
+}
