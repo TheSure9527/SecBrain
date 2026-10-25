@@ -1,0 +1,350 @@
+/* ============ Markdown 富内容 ============ */
+
+/* 高亮 ==text== */
+.markdown-preview mark {
+  background: var(--mark-bg);
+  color: inherit;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* ---- Callouts ---- */
+.callout {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  border-left-width: 4px;
+  background: var(--bg-panel);
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+.callout-title {
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.callout-body {
+  padding: 8px 14px;
+  font-size: 13.5px;
+}
+
+.callout-body > :first-child {
+  margin-top: 0;
+}
+
+.callout-body > :last-child {
+  margin-bottom: 0;
+}
+
+.callout-note {
+  border-left-color: #5b9dff;
+}
+.callout-note .callout-title {
+  color: #5b9dff;
+}
+
+.callout-tip,
+.callout-success {
+  border-left-color: #3fae8a;
+}
+.callout-tip .callout-title,
+.callout-success .callout-title {
+  color: #3fae8a;
+}
+
+.callout-warning,
+.callout-question {
+  border-left-color: #e3a34f;
+}
+.callout-warning .callout-title,
+.callout-question .callout-title {
+  color: #e3a34f;
+}
+
+.callout-danger,
+.callout-bug {
+  border-left-color: #e5534b;
+}
+.callout-danger .callout-title,
+.callout-bug .callout-title {
+  color: #e5534b;
+}
+
+.callout-info,
+.callout-abstract,
+.callout-example,
+.callout-todo {
+  border-left-color: #9d8cff;
+}
+.callout-info .callout-title,
+.callout-abstract .callout-title,
+.callout-example .callout-title,
+.callout-todo .callout-title {
+  color: #9d8cff;
+}
+
+.callout-quote {
+  border-left-color: var(--text-dim);
+}
+.callout-quote .callout-title {
+  color: var(--text-dim);
+}
+
+/* ---- 脚注 ---- */
+.fn-ref {
+  font-size: 10px;
+  line-height: 1;
+  vertical-align: super;
+}
+
+.fn-ref a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.footnotes {
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.fn-item {
+  display: flex;
+  gap: 8px;
+  padding: 3px 0;
+}
+
+.fn-id {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ---- 数学公式 ---- */
+.math-inline {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 2px;
+}
+
+.math-block {
+  display: block;
+  margin: 12px 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.math-error {
+  color: var(--danger);
+  font-family: var(--mono, monospace);
+  font-size: 12px;
+}
+
+/* ---- Mermaid ---- */
+.mermaid-block {
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  text-align: center;
+}
+
+.mermaid-block.mermaid-rendered {
+  padding: 8px;
+}
+
+.mermaid-block svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.mermaid-block.mermaid-error {
+  text-align: left;
+  color: var(--danger);
+  font-family: var(--mono, monospace);
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
+/* 浅色主题下 Mermaid 使用浅色 */
+:root[data-theme='light'] .mermaid-block {
+  background: #fff;
+}
+
+/* ---- Dataview 式查询 ---- */
+.query-block {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-panel);
+  overflow-x: auto;
+  font-size: 12.5px;
+}
+
+.query-block table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.query-block th,
+.query-block td {
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.query-block th {
+  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.query-block tr:last-child td {
+  border-bottom: none;
+}
+
+.query-block tbody tr:hover {
+  background: var(--bg-hover);
+}
+
+.query-empty {
+  padding: 8px 0;
+  color: var(--text-dim);
+  font-size: 12px;
+}
+
+.query-error {
+  color: var(--danger);
+  font-family: var(--mono, monospace);
+  font-size: 12px;
+}
+
+/* 预览块：双击就地编辑 */
+.md-block {
+  position: relative;
+  border-radius: 6px;
+  transition: box-shadow 0.12s ease;
+}
+
+.md-block:hover {
+  box-shadow: inset 0 0 0 1px rgba(124, 108, 240, 0.18);
+}
+
+.md-block-editing {
+  margin: 10px 0;
+}
+
+.md-block-editing textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 10px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--bg-panel);
+  color: var(--text);
+  font-family: var(--mono, ui-monospace, Menlo, monospace);
+  font-size: 13px;
+  line-height: 1.7;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.md-block-hint {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* 预览浮动格式工具条（Word 风格） */
+.md-toolbar {
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 6px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.md-toolbar button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 12.5px;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.md-toolbar button:hover {
+  background: var(--bg-hover);
+  color: var(--accent);
+}
+
+.md-toolbar-sep {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+  margin: 0 3px;
+}
+
+/* 日记面板快捷键提示 */
+.daily-shortcuts {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.daily-shortcuts kbd {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 10.5px;
+  font-family: var(--mono, ui-monospace, Menlo, monospace);
+  background: var(--bg-panel);
+}
+
+/* 可视化编辑（contentEditable）：像 Word 一样直接改文字，不露 Markdown 标记 */
+.md-block-editing.visual {
+  outline: 2px solid rgba(124, 108, 240, 0.55);
+  outline-offset: 2px;
+  border-radius: 6px;
+  padding: 6px 10px;
+  min-height: 28px;
+  background: rgba(124, 108, 240, 0.05);
+  caret-color: var(--accent);
+}
+
+.md-block-editing.visual:empty::before {
+  content: '输入内容…';
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+/* 编辑态里的标题保持原有字号，避免点进去"跳版" */
+.md-block-editing.visual h1,
+.md-block-editing.visual h2,
+.md-block-editing.visual h3 {
+  margin: 0.3em 0;
+}

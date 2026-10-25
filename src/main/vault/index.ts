@@ -1,0 +1,12 @@
+/** 知识库域出口：域外只能从这里引用 */
+export { Vault } from './vault'
+export type { VaultFileEvent } from './vault'
+export type { TreeNode, TrashEntry } from '../../shared/vault'
+export { NoteIndex } from './note-index'
+export { NotesService } from './notes-service'
+export { LinkGraph, extractLinks } from './link-graph'
+export type { LinkRef } from './link-graph'
+export { parseNote, serializeNote, slugify } from './note-file'
+export type { ParsedNote } from './note-file'
+export { extractProps, parsePropInput } from './props'
+export type { NoteProp, PropValueType } from './props'

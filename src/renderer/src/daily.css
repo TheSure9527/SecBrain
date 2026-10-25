@@ -1,0 +1,134 @@
+/* ============ 日记面板 ============ */
+.daily-modal {
+  width: 620px;
+}
+
+.daily-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.daily-heatmap-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.daily-heatmap {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 0;
+}
+
+.heatmap-weekdays {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 1px;
+}
+
+.heatmap-weekday {
+  height: 12px;
+  font-size: 9px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  width: 12px;
+}
+
+.heatmap-weeks {
+  display: flex;
+  gap: 3px;
+}
+
+.heatmap-week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.heatmap-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: none;
+  padding: 0;
+  background: var(--bg-hover);
+  cursor: pointer;
+  display: block;
+}
+
+.heatmap-cell:disabled {
+  cursor: default;
+}
+
+.heatmap-cell.level-1 {
+  background: rgba(124, 108, 240, 0.35);
+}
+
+.heatmap-cell.level-2 {
+  background: rgba(124, 108, 240, 0.6);
+}
+
+.heatmap-cell.level-3 {
+  background: var(--accent);
+}
+
+.heatmap-cell.today {
+  outline: 1px solid var(--text);
+  outline-offset: 1px;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+.heatmap-legend .heatmap-cell {
+  width: 10px;
+  height: 10px;
+  cursor: default;
+}
+
+.daily-recent {
+  margin-top: 6px;
+}
+
+.daily-recent-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.daily-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.daily-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.daily-list-item:hover {
+  background: var(--bg-hover);
+}
+
+.daily-list-date {
+  font-size: 11px;
+  color: var(--text-dim);
+}

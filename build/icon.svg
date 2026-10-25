@@ -1,0 +1,46 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8A7BFF"/>
+      <stop offset="0.52" stop-color="#5A46D6"/>
+      <stop offset="1" stop-color="#2A1E63"/>
+    </linearGradient>
+    <linearGradient id="shieldFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.05"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.3" r="0.62">
+      <stop offset="0" stop-color="#A9F6FF" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#A9F6FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 圆角底 -->
+  <rect width="1024" height="1024" rx="228" fill="url(#bg)"/>
+  <circle cx="512" cy="336" r="344" fill="url(#glow)"/>
+
+  <!-- 盾牌（安全） -->
+  <path d="M512 172 L812 286 V556 C812 710 678 818 512 872 C346 818 212 710 212 556 V286 Z"
+        fill="url(#shieldFill)" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="24" stroke-linejoin="round"/>
+
+  <!-- 神经网络（大脑） -->
+  <g stroke="#9FF3FF" stroke-opacity="0.85" stroke-width="16" stroke-linecap="round">
+    <line x1="410" y1="470" x2="512" y2="404"/>
+    <line x1="512" y1="404" x2="616" y2="470"/>
+    <line x1="410" y1="470" x2="452" y2="570"/>
+    <line x1="616" y1="470" x2="574" y2="570"/>
+    <line x1="452" y1="570" x2="574" y2="570"/>
+    <line x1="512" y1="404" x2="512" y2="662"/>
+    <line x1="452" y1="570" x2="512" y2="662"/>
+    <line x1="574" y1="570" x2="512" y2="662"/>
+  </g>
+  <g fill="#DFFBFF">
+    <circle cx="410" cy="470" r="30"/>
+    <circle cx="616" cy="470" r="30"/>
+    <circle cx="452" cy="570" r="30"/>
+    <circle cx="574" cy="570" r="30"/>
+    <circle cx="512" cy="662" r="26"/>
+  </g>
+  <circle cx="512" cy="404" r="44" fill="#FFFFFF"/>
+  <circle cx="512" cy="404" r="18" fill="#5A46D6"/>
+</svg>

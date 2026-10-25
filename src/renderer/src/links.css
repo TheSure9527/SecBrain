@@ -1,0 +1,313 @@
+/* ============ 链接面板（反链 / 未链接提及） ============ */
+.links-panel {
+  width: 250px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--border);
+  background: var(--bg-panel);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.links-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.links-panel-header .btn-ghost {
+  padding: 2px 8px;
+  font-size: 11px;
+}
+
+.links-section {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.links-section-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.links-count {
+  background: var(--bg-hover);
+  border-radius: 8px;
+  padding: 0 6px;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.links-empty {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  padding: 4px 0 2px;
+}
+
+.links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.links-item {
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.links-item:hover {
+  background: var(--bg-hover);
+}
+
+.links-item-title {
+  font-size: 12.5px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.links-item-path,
+.links-item-snippet {
+  font-size: 10.5px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.links-item-snippet mark {
+  background: var(--mark-bg);
+  color: var(--text);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+.btn-ghost.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ============ 关系图谱 ============ */
+.graph-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.graph-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.graph-header h1 {
+  font-size: 18px;
+}
+
+.graph-subtitle {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 3px;
+}
+
+.graph-canvas-wrap {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at center, rgba(124, 108, 240, 0.05), transparent 70%);
+}
+
+.graph-canvas-wrap canvas {
+  display: block;
+  cursor: pointer;
+}
+
+.graph-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+/* 图谱图例 */
+.graph-legend {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--text-dim);
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+.graph-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+}
+
+.legend-dot.note {
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.legend-dot.file {
+  border-radius: 2px;
+  background: #d9a45b;
+}
+
+.viewer-refs {
+  font-size: 11px;
+  color: var(--text-dim);
+  background: var(--bg-hover);
+  border-radius: 8px;
+  padding: 1px 8px;
+}
+
+/* ---- 右侧面板标签页 ---- */
+.panel-tabs {
+  display: flex;
+  gap: 2px;
+}
+
+.panel-tabs button {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 11.5px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.panel-tabs button:hover {
+  color: var(--text);
+  background: var(--bg-hover);
+}
+
+.panel-tabs button.active {
+  color: var(--accent);
+  background: var(--bg-active);
+}
+
+/* ---- 大纲 ---- */
+.outline-panel {
+  padding: 8px 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.outline-item {
+  font-size: 12.5px;
+  padding: 5px 12px 5px 8px;
+  cursor: pointer;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-left: 2px solid transparent;
+}
+
+.outline-item:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.outline-item.level-1 {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.outline-item.level-2 {
+  color: var(--text);
+}
+
+/* ---- 属性编辑器 ---- */
+.props-modal {
+  width: 480px;
+}
+
+.prop-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.prop-key {
+  width: 130px;
+  flex-shrink: 0;
+}
+
+.prop-value {
+  flex: 1;
+}
+
+.prop-row input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 6px 10px;
+  font-size: 12.5px;
+  outline: none;
+}
+
+.prop-row input:focus {
+  border-color: var(--accent);
+}
+
+/* 图谱工具栏 */
+.graph-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.graph-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+}
+
+.graph-toggle input {
+  accent-color: var(--accent);
+  cursor: pointer;
+}

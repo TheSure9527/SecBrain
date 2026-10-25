@@ -1,0 +1,43 @@
+appId: com.secbrain.app
+# 应用显示名（userData 会随之变为 ~/Library/Application Support/SecBrain，
+# 首次启动会自动从旧的 myzsk 目录迁移数据）
+productName: SecBrain
+copyright: Copyright © 2026 SecBrain
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - out/**
+  - package.json
+
+asar: true
+# 原生模块（ONNX Runtime）不能塞进 asar，否则运行时找不到 .node/.dylib
+asarUnpack:
+  - '**/node_modules/onnxruntime-node/**'
+  - '**/node_modules/@xenova/transformers/**'
+  - '**/*.node'
+  - '**/*.dylib'
+
+mac:
+  category: public.app-category.productivity
+  icon: build/icon.icns
+  target:
+    - target: dmg
+      arch:
+        - arm64
+  # 本地自用：不签名，首次打开需右键「打开」或在终端解除隔离
+  identity: null
+  hardenedRuntime: false
+  gatekeeperAssess: false
+
+dmg:
+  title: SecBrain
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications

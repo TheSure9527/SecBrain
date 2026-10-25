@@ -1,0 +1,26 @@
+# 依赖与构建产物
+node_modules/
+out/
+dist/
+build/icon.iconset/
+
+# 本地数据（数据库、模型缓存、导出文件）
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+models/
+*.ics
+
+# 含个人信息的评测集（示例见 questions.example.json）
+tests/eval/questions.local.json
+
+# 日志与缓存
+*.log
+coverage/
+.vite/
+*.tsbuildinfo
+
+# 系统与编辑器
+.DS_Store
+.idea/

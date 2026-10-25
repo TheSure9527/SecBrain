@@ -1,0 +1,216 @@
+/* ============ 内置文件查看器 ============ */
+.viewer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.viewer {
+  width: 100%;
+  height: 100%;
+  max-width: 1400px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+.viewer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.viewer-title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+.viewer-name {
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.viewer-kind {
+  font-size: 11px;
+  color: var(--text-dim);
+  background: var(--bg-hover);
+  border-radius: 8px;
+  padding: 1px 8px;
+}
+
+.viewer-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.viewer-scale {
+  font-size: 11px;
+  color: var(--text-dim);
+  min-width: 42px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.viewer-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.viewer-image-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.viewer-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.08s ease-out;
+  transform-origin: center center;
+}
+
+.viewer-loading {
+  position: absolute;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.viewer-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+
+.viewer-media-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.viewer-video {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+}
+
+.viewer-audio {
+  width: min(560px, 90%);
+}
+
+.viewer-fallback {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.viewer-fallback .btn-primary {
+  padding: 7px 18px;
+}
+
+/* 预览中的图片：悬停轻微放大，点击打开内置查看器 */
+.markdown-preview img {
+  cursor: zoom-in;
+  border-radius: 6px;
+  transform-origin: center center;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  will-change: transform;
+}
+
+.markdown-preview img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  position: relative;
+  z-index: 2;
+}
+
+.markdown-preview img:active {
+  transform: scale(0.99);
+}
+
+/* 文本预览 */
+.viewer-text {
+  margin: 0;
+  padding: 20px 24px;
+  font-family: var(--mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow: auto;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* CSV 表格 */
+.viewer-table-wrap {
+  height: 100%;
+  overflow: auto;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.viewer-table {
+  border-collapse: collapse;
+  font-size: 12.5px;
+  min-width: 100%;
+}
+
+.viewer-table th,
+.viewer-table td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+  white-space: nowrap;
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.viewer-table th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-panel);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.viewer-table tbody tr:nth-child(even) {
+  background: var(--bg-hover);
+}

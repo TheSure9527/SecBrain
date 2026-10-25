@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "note": "示例评测集：请复制为 questions.local.json 并换成你自己知识库的真实文件路径与事实。",
+  "items": [
+    {
+      "id": "fact-01",
+      "type": "fact",
+      "question": "我的本科专业是什么？",
+      "mustHit": [
+        "资料/学历证明.pdf"
+      ],
+      "mustContain": [
+        "计算机科学与技术"
+      ]
+    },
+    {
+      "id": "agg-01",
+      "type": "aggregate",
+      "question": "我做过哪些实习？",
+      "mustHit": [
+        "履历/实习/公司A/经历描述.docx",
+        "履历/实习/公司B/经历描述.docx"
+      ],
+      "answerPoints": [
+        "公司A：数据标注平台",
+        "公司B：运维系统"
+      ]
+    },
+    {
+      "id": "none-01",
+      "type": "no-answer",
+      "question": "我养过什么宠物？",
+      "mustHit": [],
+      "absentKeywords": [
+        "宠物",
+        "养猫",
+        "养狗"
+      ],
+      "expectNoAnswer": true
+    }
+  ]
+}

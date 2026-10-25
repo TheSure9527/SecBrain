@@ -1,0 +1,177 @@
+/* ============ 日期 / 时间选择器 ============ */
+.picker-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 7px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.picker-btn:hover {
+  border-color: var(--text-dim);
+}
+
+.picker-icon {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.popover {
+  position: fixed;
+  z-index: 200;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+  padding: 10px;
+}
+
+/* ---- 日期选择器 ---- */
+.dp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.dp-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dp-nav {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dp-nav:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.dp-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.dp-weekday {
+  text-align: center;
+  font-size: 10px;
+  color: var(--text-dim);
+  padding: 4px 0;
+}
+
+.dp-day {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 12px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dp-day:hover {
+  background: var(--bg-hover);
+}
+
+.dp-day.outside {
+  color: var(--text-dim);
+  opacity: 0.5;
+}
+
+.dp-day.today {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.dp-day.selected {
+  background: var(--accent);
+  color: #fff;
+}
+
+.dp-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+/* ---- 时间选择器 ---- */
+.tp-cols {
+  display: flex;
+  gap: 8px;
+}
+
+.tp-col {
+  flex: 1;
+  max-height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  scrollbar-width: thin;
+}
+
+.tp-col::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tp-col::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.tp-item {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 13px;
+  padding: 6px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+}
+
+.tp-item:hover {
+  background: var(--bg-hover);
+}
+
+.tp-item.selected {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ---- 快捷键提示 ---- */
+.shortcut-hint {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-right: 4px;
+}
+
+.kbd-hint {
+  font-size: 11px;
+  color: var(--text-dim);
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  white-space: nowrap;
+}

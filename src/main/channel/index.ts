@@ -1,0 +1,10 @@
+/** 渠道适配层出口 */
+export { ChannelAcl } from './acl'
+export { ChannelDedupStore } from './dedup'
+export { ChannelGateway } from './gateway'
+export type { InboundHandler, InboundQueue } from './gateway'
+export { SessionQueue } from './queue'
+export { DingTalkAdapter } from './dingtalk-adapter'
+export type { DingTalkCredentials, DingTalkRobotPayload } from './dingtalk-adapter'
+export { DingTalkService } from './dingtalk-service'
+export type { ChannelStatus, DingTalkConfigInput } from './dingtalk-service'
