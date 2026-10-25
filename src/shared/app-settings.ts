@@ -6,7 +6,7 @@ export interface AppSettings {
   theme: ThemeMode
   /** 用户自定义 CSS 片段 */
   customCss: string
-  /** 知识库目录（空 = 默认 ~/myzsk-vault） */
+  /** 知识库目录（空 = 默认 ~/secbrain-vault） */
   vaultRoot: string
   /** 日记目录（默认「日记」） */
   dailyDir: string

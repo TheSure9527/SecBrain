@@ -44,7 +44,7 @@ let semantic: SemanticService
 beforeEach(async () => {
   db = new DatabaseSync(':memory:')
   applySchema(db)
-  root = await mkdtemp(join(tmpdir(), 'myzsk-semantic-'))
+  root = await mkdtemp(join(tmpdir(), 'secbrain-semantic-'))
   const vault = new Vault(root)
   await vault.ensure()
   const index = new NoteIndex(db)

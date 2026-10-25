@@ -3,7 +3,7 @@ import { api } from '../api'
 import type { AppSettings } from '../../../shared/app-settings'
 import { DEFAULT_APP_SETTINGS } from '../../../shared/app-settings'
 
-const STYLE_ID = 'myzsk-custom-css'
+const STYLE_ID = 'secbrain-custom-css'
 
 function resolveTheme(mode: AppSettings['theme']): 'light' | 'dark' {
   if (mode !== 'system') return mode

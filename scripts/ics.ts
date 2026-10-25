@@ -21,7 +21,7 @@ const require = createRequire(import.meta.url)
 const { DatabaseSync } = require('node:sqlite') as typeof import('node:sqlite')
 
 const dbPath =
-  process.env['MYZSK_DB'] ?? join(homedir(), 'Library/Application Support/myzsk/myzsk.db')
+  process.env['SECBRAIN_DB'] ?? join(homedir(), 'Library/Application Support/secbrain/secbrain.db')
 const db = new DatabaseSync(dbPath, { readOnly: true })
 
 interface EventRow {
@@ -97,8 +97,8 @@ function remindersIcs(): string {
 function exportFiles(): void {
   const dir = join(homedir(), 'Desktop')
   mkdirSync(dir, { recursive: true })
-  const calendarPath = join(dir, 'myzsk-日历.ics')
-  const remindersPath = join(dir, 'myzsk-提醒.ics')
+  const calendarPath = join(dir, 'secbrain-日历.ics')
+  const remindersPath = join(dir, 'secbrain-提醒.ics')
   writeFileSync(calendarPath, calendarIcs(), 'utf8')
   writeFileSync(remindersPath, remindersIcs(), 'utf8')
   console.log(`已导出 ${loadEvents().length} 个日程 → ${calendarPath}`)
@@ -119,7 +119,7 @@ function lanAddresses(port: number): string[] {
 }
 
 function serve(port = 8787): void {
-  const token = process.env['MYZSK_ICS_TOKEN'] ?? ''
+  const token = process.env['SECBRAIN_ICS_TOKEN'] ?? ''
   const server = createServer((req, res) => {
     const url = new URL(req.url ?? '/', `http://localhost:${port}`)
     if (token && url.searchParams.get('token') !== token) {

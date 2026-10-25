@@ -60,7 +60,7 @@ export type {
 } from '../../shared/ipc'
 
 /** 渲染层访问主进程能力的唯一入口 */
-export const api = window.myzsk
+export const api = window.secbrain
 
 /** 日历能力命名空间 */
 export const calendarApi = api.calendar

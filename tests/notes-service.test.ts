@@ -21,7 +21,7 @@ let service: NotesService
 let changes: VaultChange[]
 
 beforeEach(async () => {
-  root = await mkdtemp(join(tmpdir(), 'myzsk-test-'))
+  root = await mkdtemp(join(tmpdir(), 'secbrain-test-'))
   changes = []
   const vault = new Vault(root)
   const db = new DatabaseSync(':memory:')
@@ -47,7 +47,7 @@ describe('NotesService.init', () => {
   })
 
   it('已有笔记的 vault 直接索引，不重复创建欢迎笔记', async () => {
-    const otherRoot = await mkdtemp(join(tmpdir(), 'myzsk-existing-'))
+    const otherRoot = await mkdtemp(join(tmpdir(), 'secbrain-existing-'))
     try {
       await writeFile(join(otherRoot, '旧笔记.md'), '---\ntitle: "旧笔记"\n---\n\n之前写的内容')
       const vault = new Vault(otherRoot)
@@ -211,7 +211,7 @@ describe('NotesService 外部变更同步（模拟 Obsidian）', () => {
 
 describe('NotesService 切换 Vault', () => {
   it('切换后索引重建：旧库笔记消失、新库笔记可见', async () => {
-    const otherRoot = await mkdtemp(join(tmpdir(), 'myzsk-vault2-'))
+    const otherRoot = await mkdtemp(join(tmpdir(), 'secbrain-vault2-'))
     try {
       await writeFile(join(otherRoot, '另一个库.md'), '---\ntitle: "另一个库"\n---\n\n另一个库的内容')
       await service.switchVault(otherRoot)
@@ -239,7 +239,7 @@ describe('NotesService 切换 Vault', () => {
   })
 
   it('空目录的新库自动播种欢迎笔记', async () => {
-    const emptyRoot = await mkdtemp(join(tmpdir(), 'myzsk-vault3-'))
+    const emptyRoot = await mkdtemp(join(tmpdir(), 'secbrain-vault3-'))
     try {
       await service.switchVault(emptyRoot)
       expect(existsSync(join(emptyRoot, '欢迎使用-SecBrain.md'))).toBe(true)

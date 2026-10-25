@@ -186,7 +186,7 @@ export function ButlerView(): React.JSX.Element {
                         title={reference.path}
                         onClick={() =>
                           window.dispatchEvent(
-                            new CustomEvent('myzsk:open-note', { detail: reference.path })
+                            new CustomEvent('secbrain:open-note', { detail: reference.path })
                           )
                         }
                       >

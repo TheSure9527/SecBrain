@@ -17,7 +17,7 @@ export function CommandPalette({ commands, onClose, onOpenNote }: CommandPalette
 
   useEffect(() => {
     inputRef.current?.focus()
-    void window.myzsk.listNotes().then(setNotes)
+    void window.secbrain.listNotes().then(setNotes)
   }, [])
 
   const noteResults = useMemo(() => {
@@ -120,7 +120,7 @@ export function QuickSwitcher({ onClose, onOpenNote }: QuickSwitcherProps): Reac
 
   useEffect(() => {
     inputRef.current?.focus()
-    void window.myzsk.listNotes().then(setNotes)
+    void window.secbrain.listNotes().then(setNotes)
   }, [])
 
   const results = useMemo(() => {

@@ -39,18 +39,18 @@ export function NotesView(): React.JSX.Element {
 
   // 编辑区宽度（px）与折叠态，持久化到 localStorage
   const [editorWidth, setEditorWidth] = useState<number>(() => {
-    const saved = Number(localStorage.getItem('myzsk.editor.width.v2'))
+    const saved = Number(localStorage.getItem('secbrain.editor.width.v2'))
     return Number.isFinite(saved) && saved >= 240 ? saved : 0
   })
   const [editorCollapsed, setEditorCollapsed] = useState(
-    () => localStorage.getItem('myzsk.editor.collapsed.v2') === '1'
+    () => localStorage.getItem('secbrain.editor.collapsed.v2') === '1'
   )
   const bodyRef = useRef<HTMLDivElement>(null)
 
   const toggleEditor = (): void => {
     setEditorCollapsed((prev) => {
       const next = !prev
-      localStorage.setItem('myzsk.editor.collapsed.v2', next ? '1' : '0')
+      localStorage.setItem('secbrain.editor.collapsed.v2', next ? '1' : '0')
       return next
     })
   }
@@ -69,7 +69,7 @@ export function NotesView(): React.JSX.Element {
       window.removeEventListener('pointermove', onMove)
       window.removeEventListener('pointerup', onUp)
       setEditorWidth((width) => {
-        if (width > 0) localStorage.setItem('myzsk.editor.width.v2', String(Math.round(width)))
+        if (width > 0) localStorage.setItem('secbrain.editor.width.v2', String(Math.round(width)))
         return width
       })
     }
@@ -206,11 +206,11 @@ export function NotesView(): React.JSX.Element {
       }
     }
     const onOpenDaily = (): void => setDailyOpen(true)
-    window.addEventListener('myzsk:open-note', onOpenNote)
-    window.addEventListener('myzsk:open-daily-panel', onOpenDaily)
+    window.addEventListener('secbrain:open-note', onOpenNote)
+    window.addEventListener('secbrain:open-daily-panel', onOpenDaily)
     return () => {
-      window.removeEventListener('myzsk:open-note', onOpenNote)
-      window.removeEventListener('myzsk:open-daily-panel', onOpenDaily)
+      window.removeEventListener('secbrain:open-note', onOpenNote)
+      window.removeEventListener('secbrain:open-daily-panel', onOpenDaily)
     }
   }, [openNote])
 
@@ -372,7 +372,7 @@ export function NotesView(): React.JSX.Element {
                     lineCount={doc.content.split('\n').length}
                     onJump={(line) => {
                       setEditorCollapsed(false)
-                      localStorage.setItem('myzsk.editor.collapsed.v2', '0')
+                      localStorage.setItem('secbrain.editor.collapsed.v2', '0')
                       window.setTimeout(() => editorRef.current?.gotoLine(line), 60)
                     }}
                   />
@@ -414,7 +414,7 @@ export function NotesView(): React.JSX.Element {
                   // 折叠状态先展开，再等编辑器挂载后放光标
                   if (editorCollapsed) {
                     setEditorCollapsed(false)
-                    localStorage.setItem('myzsk.editor.collapsed.v2', '0')
+                    localStorage.setItem('secbrain.editor.collapsed.v2', '0')
                     window.setTimeout(() => editorRef.current?.gotoOffset(offset), 90)
                     return
                   }

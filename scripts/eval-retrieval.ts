@@ -7,7 +7,7 @@
  * 用法：
  *   npx vite-node scripts/eval-retrieval.ts
  *   npx vite-node scripts/eval-retrieval.ts --limit 10
- *   MYZSK_DB=/path/to/myzsk.db npx vite-node scripts/eval-retrieval.ts
+ *   SECBRAIN_DB=/path/to/secbrain.db npx vite-node scripts/eval-retrieval.ts
  */
 import { readFileSync } from 'node:fs'
 import { existsSync, readFileSync } from 'node:fs'
@@ -49,11 +49,11 @@ const dataset = JSON.parse(readFileSync(datasetPath, 'utf8')) as {
   vault?: string
 }
 const dbPath =
-  process.env['MYZSK_DB'] ?? join(homedir(), 'Library/Application Support/myzsk/myzsk.db')
+  process.env['SECBRAIN_DB'] ?? join(homedir(), 'Library/Application Support/secbrain/secbrain.db')
 
 const db = new DatabaseSync(dbPath, { readOnly: true })
 const noteIndex = new NoteIndex(db)
-const documents = new DocumentIndexer(db, new Vault(dataset.vault ?? join(homedir(), 'myzsk-vault')))
+const documents = new DocumentIndexer(db, new Vault(dataset.vault ?? join(homedir(), 'secbrain-vault')))
 
 const useSemantic = args.includes('--semantic')
 const minScoreArg = args.indexOf('--min-score')
@@ -71,7 +71,7 @@ if (useSemantic) {
   const model = settings.semanticModel ?? 'Xenova/bge-small-zh-v1.5'
   const provider = new BuiltinEmbeddingProvider(
     model,
-    join(homedir(), 'Library/Application Support/myzsk/models')
+    join(homedir(), 'Library/Application Support/secbrain/models')
   )
   const chunks = db
     .prepare('SELECT path, text, vector FROM note_chunks')

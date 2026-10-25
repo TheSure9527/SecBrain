@@ -163,7 +163,7 @@ import type { ChannelApi } from './channel'
 import type { TreeNode, TrashEntry } from './vault'
 
 /** preload 暴露给渲染层的 API 形状（唯一受信任的入口） */
-export interface MyzskApi {
+export interface SecBrainApi {
   ping(): Promise<string>
   getVersion(): Promise<string>
   getAppSettings(): Promise<AppSettings>
@@ -208,6 +208,6 @@ export interface MyzskApi {
 
 declare global {
   interface Window {
-    myzsk: MyzskApi
+    secbrain: SecBrainApi
   }
 }

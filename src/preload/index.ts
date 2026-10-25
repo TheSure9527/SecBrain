@@ -16,7 +16,7 @@ import type {
   CreateNoteInput,
   CreateEventInput,
   CreateTaskInput,
-  MyzskApi,
+  SecBrainApi,
   SaveAttachmentInput,
   TaskApi,
   TaskFilter,
@@ -108,7 +108,7 @@ const butler: ButlerApi = {
   probeLocal: () => ipcRenderer.invoke('butler:probeLocal')
 }
 
-const api: MyzskApi = {
+const api: SecBrainApi = {
   ping: () => ipcRenderer.invoke('app:ping'),
   getVersion: () => ipcRenderer.invoke('app:getVersion'),
   getAppSettings: () => ipcRenderer.invoke('app:getSettings'),
@@ -152,4 +152,4 @@ const api: MyzskApi = {
   channel
 }
 
-contextBridge.exposeInMainWorld('myzsk', api)
+contextBridge.exposeInMainWorld('secbrain', api)

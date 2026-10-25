@@ -1,5 +1,5 @@
 {
-  "name": "myzsk",
+  "name": "secbrain",
   "version": "0.2.0",
   "description": "SecBrain — 本地优先的个人知识库 + AI 管家（macOS 桌面应用）",
   "main": "./out/main/index.js",

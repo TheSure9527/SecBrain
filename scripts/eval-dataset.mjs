@@ -22,7 +22,7 @@ const examplePath = 'tests/eval/questions.example.json'
 const datasetPath = process.argv[2] ?? (existsSync(localPath) ? localPath : examplePath)
 const isExample = datasetPath.endsWith('.example.json')
 const dataset = JSON.parse(readFileSync(datasetPath, 'utf8'))
-const dbPath = join(homedir(), 'Library/Application Support/myzsk/myzsk.db')
+const dbPath = join(homedir(), 'Library/Application Support/secbrain/secbrain.db')
 const db = new DatabaseSync(dbPath, { readOnly: true })
 
 const docStmt = db.prepare('SELECT text FROM documents WHERE path = ?')

@@ -21,7 +21,7 @@ let links: LinkGraph
 beforeEach(async () => {
   db = new DatabaseSync(':memory:')
   applySchema(db)
-  root = await mkdtemp(join(tmpdir(), 'myzsk-links-'))
+  root = await mkdtemp(join(tmpdir(), 'secbrain-links-'))
   vault = new Vault(root)
   await vault.ensure()
   index = new NoteIndex(db)

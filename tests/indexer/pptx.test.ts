@@ -13,7 +13,7 @@ import {
 let root: string
 
 beforeEach(async () => {
-  root = await mkdtemp(join(tmpdir(), 'myzsk-pptx-'))
+  root = await mkdtemp(join(tmpdir(), 'secbrain-pptx-'))
 })
 
 afterEach(async () => {

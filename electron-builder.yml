@@ -1,6 +1,6 @@
 appId: com.secbrain.app
 # 应用显示名（userData 会随之变为 ~/Library/Application Support/SecBrain，
-# 首次启动会自动从旧的 myzsk 目录迁移数据）
+# 首次启动会自动从旧的 secbrain 目录迁移数据）
 productName: SecBrain
 copyright: Copyright © 2026 SecBrain
 

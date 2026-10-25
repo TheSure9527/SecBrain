@@ -18,7 +18,7 @@ let docs: DocumentIndexer
 beforeEach(async () => {
   db = new DatabaseSync(':memory:')
   applySchema(db)
-  root = await mkdtemp(join(tmpdir(), 'myzsk-docs-'))
+  root = await mkdtemp(join(tmpdir(), 'secbrain-docs-'))
   vault = new Vault(root)
   await vault.ensure()
   docs = new DocumentIndexer(db, vault)

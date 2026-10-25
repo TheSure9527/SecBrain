@@ -15,7 +15,7 @@ export interface OpenFilePayload {
 /** 触发内置查看器（全局事件总线） */
 export function openFileViewer(path: string, name?: string): void {
   window.dispatchEvent(
-    new CustomEvent<OpenFilePayload>('myzsk:open-file', { detail: { path, name } })
+    new CustomEvent<OpenFilePayload>('secbrain:open-file', { detail: { path, name } })
   )
 }
 
@@ -275,7 +275,7 @@ export function baseName(path: string): string {
   return path.split('/').pop() ?? path
 }
 
-/** 从 myzsk-file URL 还原相对路径（预览区点击图片时用） */
+/** 从 secbrain-file URL 还原相对路径（预览区点击图片时用） */
 export function relativePathFromUrl(url: string): string | null {
   return parseVaultFileUrl(url)
 }

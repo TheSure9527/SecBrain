@@ -141,7 +141,7 @@ function createVEventComponent(input: BuildVEventInput): ICAL.Component {
 
 function createVCalendar(): ICAL.Component {
   const cal = new ICAL.Component(['vcalendar', [], []])
-  cal.updatePropertyWithValue('prodid', '-//myzsk//CN')
+  cal.updatePropertyWithValue('prodid', '-//SecBrain//CN')
   cal.updatePropertyWithValue('version', '2.0')
   cal.updatePropertyWithValue('calscale', 'GREGORIAN')
   return cal
@@ -250,7 +250,7 @@ export function buildVTodoString(input: {
   priority?: number
 }): string {
   const cal = new ICAL.Component(['vcalendar', [], []])
-  cal.updatePropertyWithValue('prodid', '-//myzsk//CN')
+  cal.updatePropertyWithValue('prodid', '-//SecBrain//CN')
   cal.updatePropertyWithValue('version', '2.0')
 
   const todo = new ICAL.Component('vtodo')

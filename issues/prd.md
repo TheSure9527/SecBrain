@@ -1,4 +1,4 @@
-# myzsk — 个人知识库 + 私人管家 PRD
+# secbrain — 个人知识库 + 私人管家 PRD
 
 > 版本：v2.0（2026-10-23 重构）
 > 产品定位升级：**平替 Obsidian 的大部分核心功能，叠加自研的「私人管家」能力**。
@@ -15,11 +15,11 @@
 
 ## Solution
 
-**myzsk** 是一个 macOS 桌面应用（Electron + React + TypeScript），两大板块：
+**secbrain** 是一个 macOS 桌面应用（Electron + React + TypeScript），两大板块：
 
 ### 板块一：知识库（Obsidian 平替）
 
-以 Markdown 文件为唯一内容源（`~/myzsk-vault`，与 Obsidian 目录完全互通），实现 Obsidian 的核心体验：
+以 Markdown 文件为唯一内容源（`~/secbrain-vault`，与 Obsidian 目录完全互通），实现 Obsidian 的核心体验：
 
 - **编辑与渲染**：所见即所得的编辑/预览、Callouts、高亮、脚注、LaTeX 公式、Mermaid 图表
 - **链接系统**：双向链接、反向链接面板、未链接提及、链接自动补全、重命名自动更新引用、块引用与嵌入

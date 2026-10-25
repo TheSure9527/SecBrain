@@ -13,7 +13,7 @@ export interface RemoteEventRef {
 }
 
 /**
- * CalDAV 客户端薄封装：只暴露 myzsk 需要的能力。
+ * CalDAV 客户端薄封装：只暴露 secbrain 需要的能力。
  * 凭证经构造注入，不在本类持久化。
  */
 export class CalDavClient {

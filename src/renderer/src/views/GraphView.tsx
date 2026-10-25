@@ -256,7 +256,7 @@ export function GraphView(): React.JSX.Element {
         void api.openExternal(node.id)
       }
     } else {
-      window.dispatchEvent(new CustomEvent('myzsk:open-note', { detail: best.id }))
+      window.dispatchEvent(new CustomEvent('secbrain:open-note', { detail: best.id }))
     }
   }
 

@@ -1,5 +1,5 @@
 /**
- * 资源路径解析：把笔记中的相对路径转换为渲染进程可加载的 myzsk-file:// URL。
+ * 资源路径解析：把笔记中的相对路径转换为渲染进程可加载的 secbrain-file:// URL。
  */
 
 const ABSOLUTE_RE = /^(?:[a-z][a-z0-9+.-]*:|\/\/|\/|#)/i
@@ -39,21 +39,21 @@ export function isPreviewable(path: string): boolean {
   return previewKind(path) !== null
 }
 
-/** vault 相对路径 → myzsk-file:// URL（逐段编码） */
+/** vault 相对路径 → secbrain-file:// URL（逐段编码） */
 export function vaultFileUrl(relPath: string): string {
   const encoded = relPath
     .replace(/^\/+/, '')
     .split('/')
     .map((segment) => encodeURIComponent(segment))
     .join('/')
-  return `myzsk-file://vault/${encoded}`
+  return `secbrain-file://vault/${encoded}`
 }
 
-/** 把 myzsk-file://vault/<encoded> 反向解析为 vault 相对路径 */
+/** 把 secbrain-file://vault/<encoded> 反向解析为 vault 相对路径 */
 export function parseVaultFileUrl(url: string): string | null {
-  if (!url.startsWith('myzsk-file://vault/')) return null
+  if (!url.startsWith('secbrain-file://vault/')) return null
   try {
-    const raw = url.slice('myzsk-file://vault/'.length)
+    const raw = url.slice('secbrain-file://vault/'.length)
     return raw
       .split('/')
       .map((segment) => decodeURIComponent(segment))
@@ -94,7 +94,7 @@ function dirOf(notePath: string): string {
 /**
  * 把 href 解析为可加载 URL：
  * - 绝对 URL / data: / 锚点 → 原样返回
- * - 相对路径 → myzsk-file://vault/<相对 vault 的路径>（相对当前笔记目录）
+ * - 相对路径 → secbrain-file://vault/<相对 vault 的路径>（相对当前笔记目录）
  */
 export function resolveAssetUrl(href: string, notePath: string): string {
   if (!href) return href

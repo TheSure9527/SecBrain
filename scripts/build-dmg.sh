@@ -21,4 +21,4 @@ echo "安装：双击 dmg → 把 SecBrain 拖到「应用程序」"
 echo "首次打开若被系统拦截：右键 App →「打开」，或在终端执行"
 echo "  xattr -dr com.apple.quarantine /Applications/SecBrain.app"
 echo
-echo "数据位置：~/Library/Application Support/SecBrain/myzsk.db（首次启动自动从旧 myzsk 目录迁移）"
+echo "数据位置：~/Library/Application Support/SecBrain/secbrain.db（首次启动自动从旧 secbrain 目录迁移）"

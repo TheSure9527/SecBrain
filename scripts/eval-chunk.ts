@@ -2,7 +2,7 @@
  * 切片长度对比实验（语义检索）
  *
  * 做法：
- *   1. 把语料切成 ~250 字的「基础单元」并编码一次（缓存到 /tmp/myzsk-units.json）
+ *   1. 把语料切成 ~250 字的「基础单元」并编码一次（缓存到 /tmp/secbrain-units.json）
  *   2. 用相邻单元合并出 250/500/750/1000 四种切片粒度（向量取均值后归一化）
  *   3. 对 40 条评测集算 Recall@5 / MRR，比较哪种粒度最合适
  *
@@ -29,7 +29,7 @@ const trueArg = args.indexOf('--true')
 const TRUE_SIZE = trueArg >= 0 ? Number(args[trueArg + 1]) : 0
 
 const BASE_UNIT = 250
-const CACHE = '/tmp/myzsk-units.json'
+const CACHE = '/tmp/secbrain-units.json'
 const SIZES = [250, 500, 750, 1000]
 const DOC_CHAR_CAP = 30_000
 const DOC_EXTS = "('docx','pdf','xlsx','pptx','txt','csv','html')"
@@ -45,7 +45,7 @@ const dataset = JSON.parse(readFileSync('tests/eval/questions.json', 'utf8')) as
 }
 
 const db = new DatabaseSync(
-  join(homedir(), 'Library/Application Support/myzsk/myzsk.db'),
+  join(homedir(), 'Library/Application Support/secbrain/secbrain.db'),
   { readOnly: true }
 )
 
@@ -134,7 +134,7 @@ async function embedAll(
 async function main(): Promise<void> {
   const provider = new BuiltinEmbeddingProvider(
     MODEL,
-    join(homedir(), 'Library/Application Support/myzsk/models')
+    join(homedir(), 'Library/Application Support/secbrain/models')
   )
 
   const questions = dataset.items.filter((item) => item.type !== 'no-answer')

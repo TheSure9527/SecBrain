@@ -1,34 +1,14 @@
 import { app, BrowserWindow, Menu, protocol } from 'electron'
-import { cpSync, existsSync } from 'node:fs'
+import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { registerServices } from './ipc/register'
 
 const isDev = !!process.env['ELECTRON_RENDERER_URL']
 
-/**
- * 应用改名（myzsk → SecBrain）后 userData 路径会变，
- * 首次启动把旧目录整体搬过来，避免看起来"数据全丢"。
- */
-function migrateLegacyData(): void {
-  const target = app.getPath('userData')
-  const legacy = join(app.getPath('appData'), 'myzsk')
-  if (legacy === target) return
-  if (existsSync(join(target, 'myzsk.db'))) return
-  if (!existsSync(legacy)) return
-  try {
-    cpSync(legacy, target, { recursive: true })
-    console.log(`[migrate] 数据已从 ${legacy} 迁移到 ${target}`)
-  } catch (error) {
-    console.warn('[migrate] 旧数据迁移失败:', error)
-  }
-}
-
-migrateLegacyData()
-
-// 自定义协议：渲染层通过 myzsk-file://vault/<相对路径> 加载知识库内的图片等资源
+// 自定义协议：渲染层通过 secbrain-file://vault/<相对路径> 加载知识库内的图片等资源
 protocol.registerSchemesAsPrivileged([
   {
-    scheme: 'myzsk-file',
+    scheme: 'secbrain-file',
     privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true }
   }
 ])
@@ -97,8 +77,8 @@ app.whenReady().then(() => {
   buildMenu()
   const services = registerServices()
 
-  // myzsk-file://vault/<path> → 当前知识库目录下的文件
-  protocol.registerFileProtocol('myzsk-file', (request, callback) => {
+  // secbrain-file://vault/<path> → 当前知识库目录下的文件
+  protocol.registerFileProtocol('secbrain-file', (request, callback) => {
     try {
       const url = new URL(request.url)
       const rel = decodeURIComponent(url.pathname).replace(/^\/+/, '')

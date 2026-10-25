@@ -9,7 +9,7 @@ let root: string
 let vault: Vault
 
 beforeEach(async () => {
-  root = await mkdtemp(join(tmpdir(), 'myzsk-vault-'))
+  root = await mkdtemp(join(tmpdir(), 'secbrain-vault-'))
   vault = new Vault(root)
   await vault.ensure()
 })

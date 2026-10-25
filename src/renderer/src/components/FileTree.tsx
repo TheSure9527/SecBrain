@@ -16,7 +16,7 @@ interface ContextMenuState {
   node: TreeNode | null
 }
 
-const EXPANDED_KEY = 'myzsk.fileTree.expanded'
+const EXPANDED_KEY = 'secbrain.fileTree.expanded'
 
 /** 按扩展名给文件配图标 */
 function fileIcon(name: string): string {
@@ -331,7 +331,7 @@ export function FileTree({ activePath, onOpenNote }: FileTreeProps): React.JSX.E
         </button>
         <button
           title="日记（热图）"
-          onClick={() => window.dispatchEvent(new CustomEvent('myzsk:open-daily-panel'))}
+          onClick={() => window.dispatchEvent(new CustomEvent('secbrain:open-daily-panel'))}
         >
           📔
         </button>

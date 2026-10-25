@@ -36,14 +36,14 @@ export function App(): React.JSX.Element {
       const payload = (event as CustomEvent<OpenFilePayload>).detail
       if (payload?.path) setViewerFile(payload)
     }
-    window.addEventListener('myzsk:open-file', onOpenFile)
-    return () => window.removeEventListener('myzsk:open-file', onOpenFile)
+    window.addEventListener('secbrain:open-file', onOpenFile)
+    return () => window.removeEventListener('secbrain:open-file', onOpenFile)
   }, [])
 
   const openNote = useCallback((path: string) => {
     setView('notes')
     // 通知 NotesView 打开指定笔记
-    window.dispatchEvent(new CustomEvent('myzsk:open-note', { detail: path }))
+    window.dispatchEvent(new CustomEvent('secbrain:open-note', { detail: path }))
   }, [])
 
   const toggleTheme = useCallback(() => {
@@ -85,7 +85,7 @@ export function App(): React.JSX.Element {
         section: '日记',
         run: () => {
           setView('notes')
-          window.dispatchEvent(new CustomEvent('myzsk:open-daily-panel'))
+          window.dispatchEvent(new CustomEvent('secbrain:open-daily-panel'))
         }
       },
       { id: 'palette.open', title: '命令面板', section: '效率', shortcut: '⌘P', run: () => setPaletteOpen(true) },

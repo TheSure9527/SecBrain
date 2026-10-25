@@ -207,7 +207,7 @@ export function MarkdownPreview({
             (n.path.split('/').pop() ?? '').toLowerCase().replace(/\.md$/i, '') === key
         )
         if (hit) {
-          window.dispatchEvent(new CustomEvent('myzsk:open-note', { detail: hit.path }))
+          window.dispatchEvent(new CustomEvent('secbrain:open-note', { detail: hit.path }))
         }
       })()
       return
@@ -218,7 +218,7 @@ export function MarkdownPreview({
     if (!rel) return
     event.preventDefault()
     if (/\.md$/i.test(rel)) {
-      window.dispatchEvent(new CustomEvent('myzsk:open-note', { detail: rel }))
+      window.dispatchEvent(new CustomEvent('secbrain:open-note', { detail: rel }))
     } else if (isPreviewable(rel)) {
       openFileViewer(rel)
     } else {

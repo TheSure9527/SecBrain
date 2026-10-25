@@ -15,8 +15,8 @@ describe('htmlToMarkdown（预览可视化编辑回写）', () => {
 
   it('链接与图片', () => {
     expect(htmlToMarkdown('<p><a href="https://x.com">站点</a></p>')).toBe('[站点](https://x.com)')
-    expect(htmlToMarkdown('<p><img src="myzsk-file://vault/a.png" alt="图"></p>')).toBe(
-      '![图](myzsk-file://vault/a.png)'
+    expect(htmlToMarkdown('<p><img src="secbrain-file://vault/a.png" alt="图"></p>')).toBe(
+      '![图](secbrain-file://vault/a.png)'
     )
   })
 

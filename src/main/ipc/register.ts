@@ -47,11 +47,11 @@ export interface AppServices {
 export function getVaultRoot(settings?: SettingsService): string {
   const saved = settings?.get().vaultRoot
   if (saved) return saved
-  return process.env['MYZSK_VAULT'] ?? join(app.getPath('home'), 'myzsk-vault')
+  return process.env['SECBRAIN_VAULT'] ?? join(app.getPath('home'), 'secbrain-vault')
 }
 
 export function registerServices(): AppServices {
-  const db = openDatabase(join(app.getPath('userData'), 'myzsk.db'))
+  const db = openDatabase(join(app.getPath('userData'), 'secbrain.db'))
 
   // ---------- 应用设置（Vault 路径依赖它） ----------
   const settings = new SettingsService(db)
@@ -175,7 +175,7 @@ export function registerServices(): AppServices {
     'vault:updateProps': (_e, input: { path: string; props: Record<string, string> }) =>
       notes.updateProps(input.path, input.props),
     'vault:setRoot': async (_e, path: string) => {
-      // 空路径 = 恢复默认（~/myzsk-vault）
+      // 空路径 = 恢复默认（~/secbrain-vault）
       const target = path.trim() ? path : getVaultRoot()
       settings.save({ ...settings.get(), vaultRoot: path.trim() })
       await notes.switchVault(target)

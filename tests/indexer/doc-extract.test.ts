@@ -12,7 +12,7 @@ import {
 let root: string
 
 beforeEach(async () => {
-  root = await mkdtemp(join(tmpdir(), 'myzsk-doc-'))
+  root = await mkdtemp(join(tmpdir(), 'secbrain-doc-'))
 })
 
 afterEach(async () => {

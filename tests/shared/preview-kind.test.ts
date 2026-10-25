@@ -53,7 +53,7 @@ describe('vaultFileUrl / parseVaultFileUrl', () => {
   it('往返一致（含中文与空格）', () => {
     const path = '图片/我的 图.png'
     const url = vaultFileUrl(path)
-    expect(url).toBe('myzsk-file://vault/%E5%9B%BE%E7%89%87/%E6%88%91%E7%9A%84%20%E5%9B%BE.png')
+    expect(url).toBe('secbrain-file://vault/%E5%9B%BE%E7%89%87/%E6%88%91%E7%9A%84%20%E5%9B%BE.png')
     expect(parseVaultFileUrl(url)).toBe(path)
   })
 

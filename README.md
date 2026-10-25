@@ -1,4 +1,6 @@
-# myzsk — 个人知识库 + 私人管家
+# SecBrain — 第二大脑
+
+> SecBrain = **Second Brain**。把笔记、材料、日程、提醒集中到一处，由本地 AI 管家统一调度。
 
 本地优先的 macOS 桌面应用：Markdown 知识库（Obsidian 兼容）+ iCloud 日历双向同步 + AI 管家（自然语言管理日程、冲突检测、智能提醒）。
 
@@ -7,7 +9,7 @@
 本项目**不含任何个人数据**，可安全公开：
 
 - 笔记正文、日历、提醒、任务全部存放在本机
-  `~/Library/Application Support/SecBrain/myzsk.db`，不入库
+  `~/Library/Application Support/SecBrain/secbrain.db`，不入库
 - API Key 经系统钥匙串加密后仅存本地，代码里没有明文密钥
 - 语义索引模型缓存（`models/`）与导出的 `.ics` 不进版本库
 - 评测集：仓库内只有脱敏示例 `tests/eval/questions.example.json`；
@@ -32,7 +34,7 @@ src/
 └── shared/        # 主进程与渲染层共享的 IPC 契约与类型
 ```
 
-- **本地优先**：SQLite 存结构化数据，Markdown 文件存笔记正文（`~/myzsk-vault`，可直接用 Obsidian 打开）。
+- **本地优先**：SQLite 存结构化数据，Markdown 文件存笔记正文（`~/secbrain-vault`，可直接用 Obsidian 打开）。
 - **日历同步**：CalDAV 协议接入 iCloud（需 App 专用密码），与 macOS/iOS 系统日历双向同步。
 - **AI 管家**：Claude / OpenAI API，function calling 执行日程操作；API Key 经 `safeStorage` 加密存储。
 - **安全边界**：渲染层零文件/网络权限，所有系统能力经 IPC 契约调用。

@@ -38,7 +38,7 @@ let daily: DailyService
 beforeEach(async () => {
   db = new DatabaseSync(':memory:')
   applySchema(db)
-  root = await mkdtemp(join(tmpdir(), 'myzsk-daily-'))
+  root = await mkdtemp(join(tmpdir(), 'secbrain-daily-'))
   vault = new Vault(root)
   await vault.ensure()
   index = new NoteIndex(db)
