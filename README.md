@@ -1,101 +1,141 @@
-# SecBrain — 第二大脑
+<div align="center">
 
-> SecBrain = **Second Brain**。把笔记、材料、日程、提醒集中到一处，由本地 AI 管家统一调度。
+# SecBrain
 
-本地优先的 macOS 桌面应用：Markdown 知识库（Obsidian 兼容）+ iCloud 日历双向同步 + AI 管家（自然语言管理日程、冲突检测、智能提醒）。
+**第二大脑（Second Brain）—— 本地优先的知识库 + AI 管家**
 
-## 隐私说明
+把笔记、材料、日程、提醒集中到一处，由本机运行的 AI 统一调度。数据不出本机。
 
-本项目**不含任何个人数据**，可安全公开：
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Electron](https://img.shields.io/badge/Electron-45-47848F?logo=electron&logoColor=white)](https://www.electronjs.org/)
+[![SQLite](https://img.shields.io/badge/SQLite-FTS5%20%2B%20vector-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Tests](https://img.shields.io/badge/tests-414%20passed-3fae8a)](#工程质量)
+[![License](https://img.shields.io/badge/license-MIT-8b7cff)](LICENSE)
 
-- 笔记正文、日历、提醒、任务全部存放在本机
-  `~/Library/Application Support/SecBrain/secbrain.db`，不入库
-- API Key 经系统钥匙串加密后仅存本地，代码里没有明文密钥
-- 语义索引模型缓存（`models/`）与导出的 `.ics` 不进版本库
-- 评测集：仓库内只有脱敏示例 `tests/eval/questions.example.json`；
-  真实题集建议放在 `tests/eval/questions.local.json`（已被 `.gitignore` 忽略）
+<img src="docs/preview-notes.svg" width="880" alt="SecBrain 笔记界面">
+
+</div>
+
+---
+
+## 它解决什么问题
+
+个人资料通常散落在三处：网盘里的简历、微信里的文件、Obsidian 里的笔记。想找一句话，得挨个翻；交给云端 AI，又不敢把日记和薪资记录上传。
+
+SecBrain 的取向很明确：
+
+- **正文是 Markdown 文件**，SQLite 只是派生索引 —— 随时可以带着文件走
+- **检索与推理都在本机** —— 向量模型走 ONNX CPU，数据零上传
+- **没有 API Key 也能用** —— 内置规则引擎兜底日程 / 待办 / 记笔记 / 检索
+
+## 核心能力
+
+| | 能力 | 说明 |
+|---|---|---|
+| 📝 | **Markdown 知识库** | Obsidian 兼容（双链、Callouts、KaTeX、Mermaid、Dataview 查询） |
+| 👁 | **所见即所得** | 右侧预览单击即可编辑，回车后光标自动跟随回编辑器 |
+| 📅 | **日历双向同步** | iCloud CalDAV，支持月/周视图、冲突检测、空闲时段建议 |
+| ✅ | **提醒事项同步** | 区分 VEVENT 与 VTODO，勾选完成会回写 iCloud |
+| 🔍 | **混合检索** | FTS5 全文 + 路径匹配 + 向量语义 → RRF 融合 |
+| 🤖 | **AI 管家** | 工具调用型 Agent：查日程、建事件、管待办、读笔记 |
+| 📄 | **材料索引** | docx / pdf / xlsx / pptx 正文提取，642 份可检索 |
+| 💬 | **钉钉单聊渠道** | Stream 长连接、幂等去重、绑定码白名单、按会话隔离 |
+| 🎨 | **个性化** | 主题、自定义 CSS、编辑器折叠为行号栏、拖拽分栏 |
+
+<div align="center">
+<img src="docs/preview-butler.svg" width="880" alt="SecBrain 管家界面">
+</div>
+
+## 架构
+
+<div align="center">
+<img src="docs/architecture.svg" width="880" alt="SecBrain 分层架构">
+</div>
+
+依赖只能自上而下，**领域层零 IO**，智能体层只调应用层用例。
+
+索引一致性是这套架构的重点：全文、属性、链接图、向量四类索引统一由 `IndexCoordinator` 扇出，单个 provider 失败不阻断其余，但必须记录并可重试——避免"搜索能命中、打开却是旧内容"的幽灵结果。
+
+```
+src/
+├── main/          Electron 主进程
+│   ├── ai/          智能体层：工具 Schema / 执行器 / 混合检索
+│   ├── channel/     渠道适配：钉钉 Stream / 幂等 / 队列
+│   ├── indexing/    索引一致性：IndexCoordinator + 4 个 provider
+│   ├── calendar/    日历与提醒（CalDAV、VEVENT、VTODO）
+│   ├── vault/       知识库：文件、笔记、双链、属性
+│   ├── semantic/    向量检索：分块、编码、检索
+│   └── domain/      领域层：纯规则纯函数
+├── preload/       contextoBridge 安全桥
+└── renderer/      React 界面
+```
+
+## 工程质量
+
+```bash
+npm run verify   # 分层检查 + 类型检查 + 全量测试
+```
+
+| 指标 | 数值 |
+|---|---|
+| 单元测试 | **414 个**（39 文件） |
+| 分层检查 | **68 个文件**，零层级违规 / 零循环依赖 / 零跨域深层导入 |
+| 索引覆盖率 | **99.7%**（1534 / 1539 个可读文件） |
+| 检索 Recall@5 | 关键词 40.7% → 混合检索 **63.0%** |
+| 拒答正确率 | **61.5%**（13 条"知识库中确实没有"的问题） |
+
+评测集自带 40 条问题（事实 / 汇总 / 拒答三类），`npm run eval:retrieval` 可复现上述数字。
 
 ## 快速开始
 
 ```bash
 npm install
-npm run dev      # 开发模式（Vite HMR + Electron）
-npm run build    # 构建到 out/
-npm run typecheck
+npm run dev        # 开发模式（Vite HMR + Electron）
+npm run build      # 构建到 out/
+npm run dist:mac   # 打包 macOS dmg（arm64，未签名）
 ```
 
-## 架构
+首次启动后：设置 → 知识库目录 → 选一个文件夹即可（会自动索引 Markdown 与 docx/pdf/xlsx）。
 
-```
-src/
-├── main/          # Electron 主进程（窗口、托盘、IPC handlers、业务实现）
-├── preload/       # contextBridge 安全桥
-├── renderer/      # React UI（笔记/日历/任务/管家/设置）
-└── shared/        # 主进程与渲染层共享的 IPC 契约与类型
-```
+可选能力：
 
-- **本地优先**：SQLite 存结构化数据，Markdown 文件存笔记正文（`~/secbrain-vault`，可直接用 Obsidian 打开）。
-- **日历同步**：CalDAV 协议接入 iCloud（需 App 专用密码），与 macOS/iOS 系统日历双向同步。
-- **AI 管家**：Claude / OpenAI API，function calling 执行日程操作；API Key 经 `safeStorage` 加密存储。
-- **安全边界**：渲染层零文件/网络权限，所有系统能力经 IPC 契约调用。
+- **语义检索**：设置 → 语义检索 → 启用（首次下载 bge 模型并建索引，约 5–15 分钟）
+- **AI 管家**：设置 → AI 管家 → 选服务商 → 填 API Key → 刷新模型列表
+- **本地模型**：装 Ollama 后点「检测本地模型」，自动填入 `127.0.0.1:11434`
+- **日历同步**：设置 → 日程账户 → iCloud（用户名 + App 专用密码）
 
-## 里程碑
+## 技术选型要点
 
-产品定位：**平替 Obsidian 大部分核心功能 + 自研私人管家**。完整需求与差距分析见 [issues/prd.md](issues/prd.md)。
+| 决策 | 原因 |
+|---|---|
+| SQLite `node:sqlite` 而非 better-sqlite3 | 免原生编译，Electron 内置 Node 即可用 |
+| 本地 ONNX 向量而非云 API | 数据不出本机，断网可用 |
+| RRF 融合而非加权求和 | 不同通道分数量纲不同，RRF 免调参 |
+| 分块 750 字 | 对照实验（250/500/750/1000）中召回与排序综合最优 |
+| 规则引擎兜底 | 未配置模型的用户也能完成高频操作，避免首屏流失 |
 
-- [x] **M1 骨架**：工程跑通、IPC 打通
-- [x] **M2 知识库核心**：Vault + 编辑器 + 搜索 + 标签 + 双链渲染
-- [x] **M3 日程**：CalDAV 同步 + 日历视图 + 事件 CRUD + 冲突检测 + 提醒
-- [x] **M4 任务**：任务管理 + 任务转日程 + 到期提醒
-- [x] **M5 AI 管家**：对话 + 自然语言管理日程/任务 + 上下文注入 + 多 Provider
-- [x] **M6 知识库平替核心**：
-  - [x] 文件树（新建/重命名/移动/拖拽/回收站）
-  - [x] 命令面板 ⌘P + 快速切换器 ⌘O + 视图快捷键 ⌘1-5
-  - [x] 主题系统（浅色/深色/跟随系统 + 自定义 CSS）
-  - [x] 链接系统：`[[` 自动补全 / 反向链接 / 未链接提及 / 重命名联动 / 关系图谱
-  - [x] 多 Vault（选择任意本地文件夹，索引重建）
-  - [x] 内置文件查看器（图片缩放 / PDF / 音视频）+ 全文件类型文件树
-- [ ] **M7 知识库进阶**（进行中）：
-  - [x] M7-1 渲染增强：Callouts / 高亮 / 脚注 / KaTeX 公式 / Mermaid 图表
-  - [x] M7-2 模板变量 + 日记（⌘D、热图、最近日记）
-  - [x] M7-3 Dataview 式查询（front-matter 属性索引 + ```query 表格）
-  - [x] M7-4 大纲面板（点击跳转）+ front-matter 属性编辑器
-- [ ] **M8 管家增强与打磨**（进行中）：
-  - [x] M8-1 检索增强：`search_notes` 返回摘录、`read_note`、`related_notes`、回答引用来源与引用卡片
-  - [x] M8-1 语义索引：本地 bge-base-zh-v1.5 向量检索 + FTS/向量 RRF 融合（设置页可开关）
-  - [x] M8-1 材料索引：docx / pdf / xlsx / txt / csv / 代码文件正文提取与检索（管家可读）
-  - [ ] 每日晨报 + 会前准备 + 托盘/全局快捷键 + 备份
+## 数据与隐私
 
-## 钉钉单聊渠道
+- 笔记正文存 Markdown 文件，数据库只存索引：`~/Library/Application Support/SecBrain/secbrain.db`
+- API Key 经系统钥匙串加密，代码中无明文密钥
+- 仓库不含任何个人数据：真实评测集放在 `tests/eval/questions.local.json`（已 gitignore）
+- 向量模型、`*.db`、导出的 `.ics` 均不进版本库
 
-- 渠道适配层（`channel/`）：协议转换 / @ 清洗 / 幂等去重 / 快速 ACK / sessionWebhook 回推
-- 会话隔离：`channel:conversationId:userId`，桌面与各渠道历史互不串联
-- 访问控制：6 位一次性绑定码 + 已绑定用户白名单（防止机器人被拉群后泄露私人内容）
-- 队列：按会话分桶，同会话串行、不同会话并行
+## 已知限制
 
-配置：设置 → 钉钉机器人（ClientID / ClientSecret，Stream 模式，无需公网 IP）。
+- macOS 为主（Windows / Linux 未验证）
+- 扫描版 PDF 与图片暂不支持 OCR
+- 多设备实时同步依赖 iCloud 日历，笔记本身不同步
+- 未上架公证，首次打开需右键「打开」
 
-## 架构分层
+## Roadmap
 
-```
-⓪ channel/     渠道适配：协议转换 / 验签 / 幂等 / 快速 ACK（不含业务判断）
-① renderer/    表现层：只经 preload 契约访问主进程
-② 应用层        notes-service / calendar-service / task-service / daily-service / query-executor / semantic-service / document-index
-③ 智能体层      ai/butler-service · ai/tools（schema + executors）· provider
-④ 领域层        domain/(time,ids,datetime) · link-graph · props · conflict · chunker · query-parser · ai/search · ai/retrieval
-⑤ 基础设施      vault/(vault,note-file,note-index) · event-store · task-store · ical · caldav-client · embedding · doc-extract · db · settings
-```
+- [ ] Reranker（bge-reranker）精排，目标 Recall@5 ≥ 75%
+- [ ] 查询改写与父子检索（解决汇总型问题召回）
+- [ ] 局域网网页管家（手机浏览器直连，不依赖第三方平台）
+- [ ] 扫描件 OCR
+- [ ] 自动更新（electron-updater）
 
-依赖规则：只能自上而下；领域层零 IO；智能体层只调应用层用例。
+## License
 
-**索引一致性**：全文/属性/链接/向量四类索引统一由 `indexing/IndexCoordinator` 扇出，
-单个 provider 失败不阻断其余但必须记录（`IndexPartialFailure`）。
-
-**可执行校验**：
-
-```bash
-npm run check:layers   # 层级越界 / 跨域深层导入 / 循环依赖
-npm run verify         # 分层 + 类型 + 全量测试
-```
-
-需求细节见 [issues/prd.md](issues/prd.md)。
+[MIT](LICENSE) © 2026 SecBrain Contributors

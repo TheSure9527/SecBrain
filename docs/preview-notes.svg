@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif">
+  <defs>
+    <linearGradient id="win" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d1e25"/>
+      <stop offset="1" stop-color="#16171c"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="760" rx="14" fill="url(#win)" stroke="#33343f"/>
+  <!-- 交通灯 -->
+  <circle cx="26" cy="24" r="6" fill="#ff5f57"/><circle cx="46" cy="24" r="6" fill="#febc2e"/><circle cx="66" cy="24" r="6" fill="#28c840"/>
+  <text x="600" y="29" fill="#6f6e85" font-size="12" text-anchor="middle">SecBrain — 项目周报 2026-W43</text>
+
+  <!-- 侧栏 -->
+  <rect x="1" y="48" width="196" height="711" fill="#191a20"/>
+  <line x1="197" y1="48" x2="197" y2="759" stroke="#2b2c36"/>
+  <text x="24" y="86" fill="#8b7cff" font-size="16" font-weight="700">SecBrain</text>
+
+  <g font-size="13">
+    <rect x="12" y="104" width="172" height="30" rx="7" fill="#26263a"/>
+    <text x="28" y="124" fill="#c3bdff">笔记</text>
+    <text x="28" y="158" fill="#8e8ca6">日历</text>
+    <text x="28" y="190" fill="#8e8ca6">提醒</text>
+    <text x="28" y="222" fill="#8e8ca6">图谱</text>
+    <text x="28" y="254" fill="#8e8ca6">管家</text>
+    <text x="28" y="286" fill="#8e8ca6">设置</text>
+  </g>
+
+  <line x1="12" y1="306" x2="184" y2="306" stroke="#2b2c36"/>
+  <text x="24" y="330" fill="#5f5d78" font-size="11">工作区</text>
+  <g font-size="12" fill="#8e8ca6">
+    <text x="24" y="354">▾ 📁 项目</text>
+    <text x="38" y="378" fill="#c3bdff">📄 项目周报 2026-W43</text>
+    <text x="38" y="402">📄 需求评审纪要</text>
+    <text x="38" y="426">📄 竞品拆解</text>
+    <text x="24" y="452">▸ 📁 读书笔记</text>
+    <text x="24" y="476">▸ 📁 日记</text>
+    <text x="24" y="500">▸ 📁 履历</text>
+  </g>
+
+  <!-- 编辑区 -->
+  <rect x="197" y="48" width="430" height="711" fill="#1b1c22"/>
+  <line x1="627" y1="48" x2="627" y2="759" stroke="#2b2c36"/>
+  <text x="219" y="80" fill="#6f6e85" font-size="11">Markdown</text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5">
+    <g fill="#4a4a5e">
+      <text x="215" y="110">1</text><text x="215" y="132">2</text><text x="215" y="154">3</text>
+      <text x="215" y="176">4</text><text x="215" y="198">5</text><text x="215" y="220">6</text>
+      <text x="215" y="242">7</text><text x="215" y="264">8</text><text x="215" y="286">9</text>
+      <text x="215" y="308">10</text><text x="215" y="330">11</text><text x="215" y="352">12</text>
+      <text x="215" y="374">13</text><text x="215" y="396">14</text><text x="215" y="418">15</text>
+    </g>
+    <g>
+      <text x="238" y="110" fill="#8b7cff">## 本周进展</text>
+      <text x="238" y="132" fill="#c8c6d8">- 完成检索评测基线，Recall@5 40.7%</text>
+      <text x="238" y="154" fill="#c8c6d8">- 引入语义通道后提升至 63%</text>
+      <text x="238" y="176" fill="#c8c6d8">- 修复 xlsx 索引从未生效的问题</text>
+      <text x="238" y="198" fill="#a5a3bd" />
+      <text x="238" y="220" fill="#8b7cff">## 风险</text>
+      <text x="238" y="242" fill="#c8c6d8">> 并发编码会打爆内存，改为**串行队列**</text>
+      <text x="238" y="264" fill="#c8c6d8">> 并为每个文档记录内容哈希，避免重复计算</text>
+      <text x="238" y="286" fill="#a5a3bd" />
+      <text x="238" y="308" fill="#8b7cff">## 下周计划</text>
+      <text x="238" y="330" fill="#c8c6d8">- [x] 分块长度实验（250/500/750/1000）</text>
+      <text x="238" y="352" fill="#c8c6d8">- [ ] 接入 reranker</text>
+      <text x="238" y="374" fill="#c8c6d8">- [ ] 补 20 条拒答题</text>
+    </g>
+  </g>
+
+  <!-- 光标 -->
+  <rect x="238" y="358" width="2" height="15" fill="#8b7cff"/>
+
+  <!-- 分隔条 -->
+  <rect x="627" y="48" width="4" height="711" fill="#20212a"/>
+
+  <!-- 预览区 -->
+  <rect x="631" y="48" width="568" height="711" fill="#1b1c22"/>
+  <text x="663" y="80" fill="#6f6e85" font-size="11">预览</text>
+
+  <text x="663" y="124" fill="#eceaf5" font-size="20" font-weight="600">本周进展</text>
+  <g fill="#b9b7d0" font-size="13.5">
+    <text x="663" y="154">• 完成检索评测基线，Recall@5 40.7%</text>
+    <text x="663" y="178">• 引入语义通道后提升至 63%</text>
+    <text x="663" y="202">• 修复 xlsx 索引从未生效的问题</text>
+  </g>
+
+  <text x="663" y="246" fill="#eceaf5" font-size="20" font-weight="600">风险</text>
+  <rect x="655" y="262" width="520" height="62" rx="8" fill="#241f2e" stroke="#6b4bb8"/>
+  <rect x="655" y="262" width="4" height="62" rx="2" fill="#8b7cff"/>
+  <text x="675" y="286" fill="#d6cff5" font-size="13">并发编码会打爆内存，改为</text>
+  <text x="836" y="286" fill="#c3b6ff" font-size="13" font-weight="600">串行队列</text>
+  <text x="675" y="308" fill="#a99fd0" font-size="13">并为每个文档记录内容哈希，避免重复计算</text>
+
+  <text x="663" y="366" fill="#eceaf5" font-size="20" font-weight="600">下周计划</text>
+  <g font-size="13.5">
+    <rect x="663" y="382" width="14" height="14" rx="3" fill="#8b7cff"/>
+    <path d="M666 389 l3 3 l5 -6" stroke="#1b1c22" stroke-width="2" fill="none"/>
+    <text x="687" y="394" fill="#6f6d85">分块长度实验（250/500/750/1000）</text>
+
+    <rect x="663" y="412" width="14" height="14" rx="3" fill="none" stroke="#4a4a5e"/>
+    <text x="687" y="424" fill="#b9b7d0">接入 reranker</text>
+
+    <rect x="663" y="442" width="14" height="14" rx="3" fill="none" stroke="#4a4a5e"/>
+    <text x="687" y="454" fill="#b9b7d0">补 20 条拒答题</text>
+  </g>
+
+  <!-- 底部状态 -->
+  <line x1="1" y1="700" x2="1199" y2="700" stroke="#26272f"/>
+  <text x="24" y="724" fill="#5f5d78" font-size="11">169 篇笔记 · 642 份材料</text>
+  <text x="1050" y="724" fill="#5f5d78" font-size="11">已保存</text>
+</svg>
