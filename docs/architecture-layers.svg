@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1040" viewBox="0 0 1440 1040"
+     font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#191a20"/><stop offset="1" stop-color="#131419"/>
+    </linearGradient>
+    <linearGradient id="l0" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1d2634"/><stop offset="1" stop-color="#1a1f28"/>
+    </linearGradient>
+    <linearGradient id="l2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#232138"/><stop offset="1" stop-color="#1e1f2a"/>
+    </linearGradient>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#6d6b88"/>
+    </marker>
+    <marker id="arP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8b7cff"/>
+    </marker>
+  </defs>
+
+  <rect width="1440" height="1040" fill="url(#bg)"/>
+
+  <!-- 标题 -->
+  <text x="48" y="58" fill="#f0eefb" font-size="26" font-weight="700">SecBrain 分层架构</text>
+  <text x="48" y="84" fill="#87859f" font-size="13">依赖只能自上而下 · 领域层零 IO · 智能体层只调应用层用例 · 索引失效只有唯一入口</text>
+  <text x="1200" y="84" fill="#5c5a75" font-size="12">v1.0</text>
+
+  <!-- 右侧横切面 -->
+  <rect x="1128" y="108" width="264" height="640" rx="12" fill="#1b1c24" stroke="#2f3040"/>
+  <text x="1152" y="138" fill="#9dc4ea" font-size="13" font-weight="600">横切面</text>
+
+  <rect x="1148" y="156" width="224" height="96" rx="9" fill="#16202c" stroke="#28425c"/>
+  <text x="1164" y="180" fill="#9dc4ea" font-size="12" font-weight="600">契约定义</text>
+  <text x="1164" y="202" fill="#7c93a8" font-size="11">shared/* 只有类型与常量</text>
+  <text x="1164" y="222" fill="#7c93a8" font-size="11">跨进程单一事实来源</text>
+  <text x="1164" y="242" fill="#5f7383" font-size="10.5">ai · calendar · tasks · docs · channel</text>
+
+  <rect x="1148" y="266" width="224" height="114" rx="9" fill="#1d2030" stroke="#3b3a63"/>
+  <text x="1164" y="290" fill="#c3bdff" font-size="12" font-weight="600">索引一致性</text>
+  <text x="1164" y="312" fill="#8f89b8" font-size="11">IndexCoordinator</text>
+  <text x="1164" y="332" fill="#8f89b8" font-size="11">allSettled 扇出 · 失败可重试</text>
+  <text x="1164" y="352" fill="#8f89b8" font-size="11">全文 / 属性 / 链接 / 向量</text>
+  <text x="1164" y="370" fill="#6b668f" font-size="10.5">应用层只调协调器，不碰具体索引</text>
+
+  <rect x="1148" y="394" width="224" height="96" rx="9" fill="#1b2620" stroke="#2c4a38"/>
+  <text x="1164" y="418" fill="#8fd7b4" font-size="12" font-weight="600">可观测性</text>
+  <text x="1164" y="440" fill="#74a68d" font-size="11">retrieval_log（查询/候选/耗时）</text>
+  <text x="1164" y="460" fill="#74a68d" font-size="11">材料索引失败清单</text>
+  <text x="1164" y="480" fill="#74a68d" font-size="11">索引进度与错误日志</text>
+
+  <rect x="1148" y="504" width="224" height="88" rx="9" fill="#2a2226" stroke="#5c3540"/>
+  <text x="1164" y="528" fill="#e8a0a8" font-size="12" font-weight="600">安全边界</text>
+  <text x="1164" y="550" fill="#b07f86" font-size="11">contextIsolation + 白名单 IPC</text>
+  <text x="1164" y="570" fill="#b07f86" font-size="11">API Key 走系统钥匙串</text>
+
+  <text x="1152" y="626" fill="#5c5a75" font-size="11">校验：npm run check:layers</text>
+  <text x="1152" y="648" fill="#5c5a75" font-size="11">68 文件 · 零违规 · 零循环</text>
+  <text x="1152" y="676" fill="#5c5a75" font-size="11">npm run verify</text>
+  <text x="1152" y="698" fill="#5c5a75" font-size="11">类型 + 分层 + 414 测试</text>
+
+  <!-- 依赖方向标尺 -->
+  <line x1="40" y1="132" x2="40" y2="716" stroke="#3a3b4a" stroke-width="1.5"/>
+  <text x="20" y="420" fill="#5c5a75" font-size="11" transform="rotate(-90 20 420)">依赖只能向下</text>
+
+  <!-- ⓪ 渠道适配层 -->
+  <rect x="72" y="108" width="1032" height="96" rx="12" fill="url(#l0)" stroke="#31465c"/>
+  <text x="96" y="136" fill="#9dc4ea" font-size="15" font-weight="700">⓪ 渠道适配层</text>
+  <text x="96" y="158" fill="#6f8ba3" font-size="11.5">纯协议 · 不含业务判断</text>
+  <g font-size="11.5" fill="#a8c4d8">
+    <rect x="300" y="122" width="150" height="30" rx="7" fill="#1a2430" stroke="#2b4358"/><text x="314" y="142">DingTalkAdapter</text>
+    <rect x="464" y="122" width="160" height="30" rx="7" fill="#1a2430" stroke="#2b4358"/><text x="478" y="142">ChannelGateway</text>
+    <rect x="638" y="122" width="140" height="30" rx="7" fill="#1a2430" stroke="#2b4358"/><text x="652" y="142">SessionQueue</text>
+    <rect x="792" y="122" width="130" height="30" rx="7" fill="#1a2430" stroke="#2b4358"/><text x="806" y="142">ChannelAcl</text>
+    <rect x="936" y="122" width="140" height="30" rx="7" fill="#1a2430" stroke="#2b4358"/><text x="950" y="142">DedupStore</text>
+  </g>
+  <text x="96" y="188" fill="#546c80" font-size="11">Stream 长连接 · 验签 · 按 channelMsgId 幂等 · 秒级 ACK 后异步处理 · 绑定码白名单</text>
+
+  <!-- ① 表现层 -->
+  <rect x="72" y="220" width="1032" height="96" rx="12" fill="#1c1d25" stroke="#33344a"/>
+  <text x="96" y="248" fill="#c8c6d8" font-size="15" font-weight="700">① 表现层</text>
+  <text x="96" y="270" fill="#7b7994" font-size="11.5">只经 preload 契约访问主进程</text>
+  <g font-size="11.5" fill="#b6b4c8">
+    <rect x="300" y="234" width="130" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="314" y="254">Views（6 个）</text>
+    <rect x="444" y="234" width="176" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="458" y="254">MarkdownPreview</text>
+    <rect x="634" y="234" width="150" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="648" y="254">NoteEditor(CM6)</text>
+    <rect x="798" y="234" width="140" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="812" y="254">CommandPalette</text>
+    <rect x="952" y="234" width="124" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="966" y="254">FileViewer</text>
+  </g>
+  <text x="96" y="300" fill="#5f5d78" font-size="11">所见即所得编辑 · 回车光标跟随 · 虚拟滚动文件树 · 图谱 Canvas 渲染</text>
+
+  <!-- ② 应用层 -->
+  <rect x="72" y="332" width="1032" height="120" rx="12" fill="#1c1d25" stroke="#33344a"/>
+  <text x="96" y="360" fill="#c8c6d8" font-size="15" font-weight="700">② 应用层</text>
+  <text x="96" y="382" fill="#7b7994" font-size="11.5">用例编排 · 事务边界</text>
+  <g font-size="11.5" fill="#b6b4c8">
+    <rect x="300" y="346" width="132" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="314" y="366">NotesService</text>
+    <rect x="446" y="346" width="146" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="460" y="366">CalendarService</text>
+    <rect x="606" y="346" width="122" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="620" y="366">TaskService</text>
+    <rect x="742" y="346" width="122" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="756" y="366">DailyService</text>
+    <rect x="878" y="346" width="146" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="892" y="366">QueryExecutor</text>
+    <rect x="300" y="392" width="156" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="314" y="412">DocumentIndexer</text>
+    <rect x="470" y="392" width="150" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="484" y="412">SemanticService</text>
+    <rect x="634" y="392" width="176" height="30" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="648" y="412">IndexCoordinator（协同）</text>
+  </g>
+  <text x="96" y="440" fill="#5f5d78" font-size="11">单文件失败不影响整体 · 索引变更走统一入口 · 材料与笔记共用同一套服务</text>
+
+  <!-- ③ 智能体层 -->
+  <rect x="72" y="468" width="1032" height="120" rx="12" fill="url(#l2)" stroke="#4a44a3"/>
+  <text x="96" y="496" fill="#c9c3ff" font-size="15" font-weight="700">③ 智能体层</text>
+  <text x="96" y="518" fill="#8b84bd" font-size="11.5">LLM 只在既定工具集内做选择</text>
+  <g font-size="11.5" fill="#c3bdf0">
+    <rect x="300" y="482" width="160" height="30" rx="7" fill="#262443" stroke="#4a44a3"/><text x="314" y="502">Tool Registry</text>
+    <rect x="474" y="482" width="200" height="30" rx="7" fill="#262443" stroke="#4a44a3"/><text x="488" y="502">Executors（12 个工具）</text>
+    <rect x="688" y="482" width="196" height="30" rx="7" fill="#262443" stroke="#4a44a3"/><text x="702" y="502">HybridSearch（RRF）</text>
+    <rect x="898" y="482" width="138" height="30" rx="7" fill="#262443" stroke="#4a44a3"/><text x="912" y="502">LocalEngine</text>
+    <rect x="300" y="528" width="200" height="30" rx="7" fill="#262443" stroke="#4a44a3"/><text x="314" y="548">Provider（OpenAI/Claude）</text>
+    <rect x="514" y="528" width="170" height="30" rx="7" fill="#262443" stroke="#4a44a3"/><text x="528" y="548">ButlerService</text>
+    <rect x="698" y="528" width="186" height="30" rx="7" fill="#262443" stroke="#4a44a3"/><text x="712" y="548">上下文压缩 / 引用</text>
+  </g>
+  <text x="96" y="576" fill="#6e679c" font-size="11">预检索注入上下文 · 多轮工具调用 · 未配置模型时降级为规则引擎</text>
+
+  <!-- ④ 领域层 -->
+  <rect x="72" y="604" width="504" height="112" rx="12" fill="#1c1d25" stroke="#33344a"/>
+  <text x="96" y="632" fill="#c8c6d8" font-size="15" font-weight="700">④ 领域层</text>
+  <text x="96" y="654" fill="#7b7994" font-size="11.5">零 IO · 可脱离数据库单测</text>
+  <g font-size="11.5" fill="#b6b4c8">
+    <rect x="96" y="668" width="128" height="28" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="110" y="687">时间规则</text>
+    <rect x="236" y="668" width="122" height="28" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="250" y="687">冲突检测</text>
+    <rect x="370" y="668" width="96" height="28" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="384" y="687">分块器</text>
+    <rect x="478" y="668" width="86" height="28" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="492" y="687">ID/属性</text>
+  </g>
+
+  <!-- ⑤ 基础设施层 -->
+  <rect x="596" y="604" width="508" height="112" rx="12" fill="#1c1d25" stroke="#33344a"/>
+  <text x="620" y="632" fill="#c8c6d8" font-size="15" font-weight="700">⑤ 基础设施层</text>
+  <text x="620" y="654" fill="#7b7994" font-size="11.5">所有与外部世界的接触 · 可替换</text>
+  <g font-size="11.5" fill="#b6b4c8">
+    <rect x="620" y="668" width="96" height="28" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="634" y="687">Vault</text>
+    <rect x="728" y="668" width="120" height="28" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="742" y="687">SQLite FTS5</text>
+    <rect x="860" y="668" width="96" height="28" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="874" y="687">CalDAV</text>
+    <rect x="968" y="668" width="118" height="28" rx="7" fill="#23242e" stroke="#3a3b4a"/><text x="982" y="687">ONNX 推理</text>
+  </g>
+
+  <!-- 层间箭头 -->
+  <g stroke="#6d6b88" stroke-width="1.4">
+    <line x1="588" y1="204" x2="588" y2="218" marker-end="url(#ar)"/>
+    <line x1="588" y1="316" x2="588" y2="330" marker-end="url(#ar)"/>
+    <line x1="588" y1="452" x2="588" y2="466" marker-end="url(#ar)"/>
+    <line x1="588" y1="588" x2="588" y2="602" marker-end="url(#ar)"/>
+  </g>
+
+  <!-- 外部系统 -->
+  <text x="72" y="764" fill="#6f6d85" font-size="12" font-weight="600">外部系统</text>
+  <g font-size="11.5">
+    <rect x="72" y="778" width="150" height="44" rx="9" fill="#1a1f28" stroke="#2f3040"/><text x="90" y="806" fill="#9aa8bd">iCloud（CalDAV）</text>
+    <rect x="236" y="778" width="176" height="44" rx="9" fill="#1a1f28" stroke="#2f3040"/><text x="254" y="806" fill="#9aa8bd">LLM API（可选）</text>
+    <rect x="426" y="778" width="150" height="44" rx="9" fill="#1a1f28" stroke="#2f3040"/><text x="444" y="806" fill="#9aa8bd">Ollama（本地）</text>
+    <rect x="590" y="778" width="150" height="44" rx="9" fill="#1a1f28" stroke="#2f3040"/><text x="608" y="806" fill="#9aa8bd">钉钉 Stream</text>
+    <rect x="754" y="778" width="180" height="44" rx="9" fill="#1a1f28" stroke="#2f3040"/><text x="772" y="806" fill="#9aa8bd">系统钥匙串</text>
+  </g>
+
+  <!-- 运行时序（右下一栏） -->
+  <rect x="72" y="848" width="1032" height="150" rx="12" fill="#16171d" stroke="#282935"/>
+  <text x="96" y="876" fill="#8b7cff" font-size="13" font-weight="600">一次提问的运行时序</text>
+  <g font-size="11.5" fill="#8b89a4">
+    <rect x="96" y="890" width="150" height="30" rx="7" fill="#1e1f28" stroke="#2f3040"/><text x="110" y="910">① 入站 / 输入</text>
+    <text x="258" y="910" fill="#57556e">→</text>
+    <rect x="278" y="890" width="176" height="30" rx="7" fill="#1e1f28" stroke="#2f3040"/><text x="292" y="910">② 幂等 + 会话隔离</text>
+    <text x="466" y="910" fill="#57556e">→</text>
+    <rect x="486" y="890" width="196" height="30" rx="7" fill="#1e1f28" stroke="#2f3040"/><text x="500" y="910">③ 混合检索（RRF）</text>
+    <text x="694" y="910" fill="#57556e">→</text>
+    <rect x="714" y="890" width="170" height="30" rx="7" fill="#1e1f28" stroke="#2f3040"/><text x="728" y="910">④ 注入上下文</text>
+    <text x="896" y="910" fill="#57556e">→</text>
+    <rect x="916" y="890" width="160" height="30" rx="7" fill="#1e1f28" stroke="#2f3040"/><text x="930" y="910">⑤ LLM / 规则</text>
+
+    <rect x="96" y="936" width="150" height="30" rx="7" fill="#1e1f28" stroke="#2f3040"/><text x="110" y="956">⑥ 工具调用</text>
+    <text x="258" y="956" fill="#57556e">→</text>
+    <rect x="278" y="936" width="176" height="30" rx="7" fill="#1e1f28" stroke="#2f3040"/><text x="292" y="956">⑦ 引用校验</text>
+    <text x="466" y="956" fill="#57556e">→</text>
+    <rect x="486" y="936" width="196" height="30" rx="7" fill="#1e1f28" stroke="#2f3040"/><text x="500" y="956">⑧ 记录 retrieval_log</text>
+    <text x="694" y="956" fill="#57556e">→</text>
+    <rect x="714" y="936" width="362" height="30" rx="7" fill="#1e1f28" stroke="#2f3040"/><text x="728" y="956">⑨ 回推渠道 / 渲染引用卡片</text>
+  </g>
+
+  <text x="72" y="1020" fill="#4c4a5e" font-size="11">数据真相源是 Markdown 文件；SQLite 只是可重建的派生索引。新增一类索引只需实现 IndexProvider 并注册，业务代码零改动。</text>
+</svg>

@@ -49,7 +49,9 @@ SecBrain 的取向很明确：
 ## 架构
 
 <div align="center">
-<img src="docs/architecture.svg" width="880" alt="SecBrain 分层架构">
+<a href="docs/architecture-layers.png"><img src="docs/architecture-layers.png" width="1000" alt="SecBrain 分层架构"></a>
+<br>
+<sub>点击看原图（3000×2167） · <a href="docs/architecture-layers.svg">矢量版</a></sub>
 </div>
 
 依赖只能自上而下，**领域层零 IO**，智能体层只调应用层用例。
